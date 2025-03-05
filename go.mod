@@ -1,3 +1,3 @@
-module github.com/Yandex-Practicum/go1fl-4-sprint-final
+module github.com/exercise
 
-go 1.23.5
+go 1.24.0
