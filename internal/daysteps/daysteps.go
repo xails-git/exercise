@@ -14,7 +14,7 @@ var (
 )
 
 func parsePackage(data string) (int, time.Duration, error) {
-	var steps int
+
 	var duration time.Duration
 	var err error
 
@@ -26,6 +26,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 	stepsStr := strings.TrimSpace(partsData[0])
 	durationStr := strings.TrimSpace(partsData[1])
 
+	var steps int
 	steps, err = strconv.Atoi(stepsStr)
 	if err != nil {
 		return 0, 0, fmt.Errorf("error convert stepStr to integer")
@@ -52,10 +53,10 @@ func DayActionInfo(data string, weight, height float64) string {
 	}
 
 	if steps <= 0 {
-		return ""
+		return fmt.Sprintf("steps <0 err: %s", err.Error())
 	}
 	distance := float64(steps) * StepLength
-	kmDistance := distance / 10
+	kmDistance := distance / 1000
 	kalories := spentcalories.WalkingSpentCalories(steps, weight, height, duration) // (steps int, weight, height float64, duration time.Duration) float64
 
 	return fmt.Sprintf(" Колличество шагов: %d\n Дистанция составила %.2fкм.\n Вы сожгли %.2f ккал.", steps, kmDistance, kalories)

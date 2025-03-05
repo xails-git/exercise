@@ -87,8 +87,7 @@ func TrainingInfo(data string, weight, height float64) string {
 
 	steps, species, duration, err := parseTraining(data)
 	if err != nil {
-		fmt.Errorf("TrainingInfo error parseTraining(data): %w", err)
-		return ""
+		return fmt.Sprintf("Data parsing error: %s", err.Error())
 	}
 	durationHours := duration.Hours()
 
